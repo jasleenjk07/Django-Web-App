@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block title %} 
+Home Page
+{% endblock %}
+{% block content %}
+<div class="container py-5">
+{% include 'components/ShowMessage.html' %}
+ 
+        
+    
+  <form  action= "{% url 'save_note' %}" method= "post" class="container mx-auto card p-4">
+   
+
+    {% comment %} <div class="mb-3 alert alert-danger">Details Not saved</div> {% endcomment %}
+ {% comment %} <div class="mb-3 alert alert-success">Details saved</div> {% endcomment %}
+    {% csrf_token%}
+
+      
+        <div class="mb-3">
+            <label for="title">Note Title</label>
+            <input name="title"
+                type="text" 
+                id="title" 
+                class="form-control" 
+                placeholder="Enter Note Title">
+        </div>
+
+        <div class="mb-3">
+            <label for="desc">Note Description</label>
+            <textarea name="description"
+
+                rows="5" 
+                id="desc" 
+                class="form-control" 
+                placeholder="Enter Note Description"></textarea>
+        </div>
+        
+        <div class="mb-3">
+            <button type="submit"
+                style="width: 100%;" 
+                class="btn btn-primary">
+                <i class="fa-solid fa-arrow-right"></i>
+                Add Note 
+
+
+            </button>
+        </div>
+          </form>
+
+
+   <div class="container">
+    <h1>Notes</h1>
+
+    <div class="row">
+        {% for note in notes %}
+        <div class="p-2 col-sm-2 col-md-3 col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4>{{ note.title }}</h4>
+                    <p>{{ note.description }}</p>
+                </div>
+
+                <div class="card-footer">
+                    {% comment %} <button class="btn btn-sm btn-info">Edit</button> {% endcomment %}
+                <a href="{% url 'update_note' note.id %}"
+   class="btn btn-sm btn-info">
+   Edit
+</a>
+
+                    {% comment %} <button class="btn btn-sm btn-danger">Delete</button> {% endcomment %}
+                <a href="{% url 'deleteview' note.id %}" 
+   class="btn btn-sm btn-danger">
+   Delete
+</a>
+
+                    
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% for message in messages %}
+        {% if message.tags == 'error' %}
+                {% comment %} <div class="mb-3 alert alert-danger">Details Not saved</div>
+        {% endfor %} {% endcomment %}
+            {% comment %} {% for message in messages %} {% endcomment %}
+                <div class="mb-3 alert alert-danger">{{message}}</div>
+            {% else  %}
+                {% comment %} {% for message in messages %} {% endcomment %}
+                {% comment %} <div class="mb-3 alert alert-success">Details saved</div> {% endcomment %}
+        {% comment %} {% endif%} {% endcomment %}
+
+         {% comment %} {% for message in messages %} {% endcomment %}
+                <div class="mb-3 alert alert-success">{{message}}</div>
+        {% endif %}
+     {% endfor %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="{% url 'updateDataView' note.id %}" method="post">
+    {% csrf_token %}
+    <input name="title" value="{{note.title}}" />
+    <textarea name="description">{{note.description}}</textarea>
+    <button type="submit">Update</button>
+</form>
+{% endblock %}
